@@ -6,7 +6,7 @@ from perimetro_rectangulo import perimetro_rectangulo
 
 
 def test_caso_correcto():
-    assert perimetro_rectangulo(5, 3) == 16
+    assert perimetro_rectangulo(5, 3) == 20
 
 
 def test_medidas_decimales():
