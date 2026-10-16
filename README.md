@@ -131,3 +131,14 @@ Las pruebas locales no sustituyen las evidencias de GitHub Actions.
 - [GitHub: construir y probar Python](https://docs.github.com/en/actions/tutorials/build-and-test-code/python)
 - [actions/setup-python](https://github.com/actions/setup-python)
 - [actions/checkout](https://github.com/actions/checkout)
+
+
+## Actividad 4 - Despliegue continuo
+
+Página: https://martinez2319.github.io/perimetro_rectangulo/
+
+`index.html` contiene una calculadora en el navegador con la misma fórmula del módulo Python. GitHub Pages aloja HTML y JavaScript; no ejecuta Python.
+
+El workflow ejecuta primero las pruebas de Python 3.10. El job `desplegar` usa `needs: pruebas`, de modo que solo publica cuando las pruebas pasan. Solo se copia index.html al artefacto del sitio.
+
+Para demostrar CD, se publica una versión inicial; después se modifica el HTML a la versión 2 y se cambia intencionalmente una expectativa de 16 a 20. El pipeline falla y la página conserva la versión 1. Al restaurar la expectativa correcta de 16, el pipeline pasa y despliega la versión 2.

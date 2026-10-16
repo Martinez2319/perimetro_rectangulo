@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Calculadora del perímetro de un rectángulo. Proyecto del alumno 8.">
+<title>Perímetro del rectángulo | Alumno 8</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#f4f6ef;color:#182c20;font-family:system-ui,sans-serif}
+main{max-width:620px;margin:40px auto;padding:0 24px}header{margin-bottom:24px}
+.eyebrow{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:#52674c;font-weight:700}
+h1{font-size:clamp(30px,6vw,44px);line-height:1.1;margin:14px 0}p{line-height:1.6}
+.version{display:inline-block;background:#deebd4;border-radius:20px;padding:7px 13px;font-size:13px}
+section{background:white;border:1px solid #dbe3d3;border-radius:18px;padding:26px;margin:20px 0}
+.formula{font-size:21px;font-weight:650;margin:8px 0 24px}.fields{display:flex;gap:16px}
+label{display:block;font-size:14px;font-weight:600;flex:1}input{display:block;width:100%;margin:8px 0 20px;padding:12px;font:inherit;border:1px solid #a2b39c;border-radius:9px}
+button{border:0;border-radius:9px;background:#345b2b;color:white;padding:13px 20px;font:inherit;font-weight:600;cursor:pointer}
+button:hover{background:#24411e}button:focus-visible,input:focus-visible{outline:3px solid #8fae59;outline-offset:3px}
+output{display:block;font-size:23px;font-weight:650;margin-top:20px}.note{font-size:13px;color:#52674c}
+footer{font-size:13px;line-height:1.8;padding:4px 0 24px}a{color:#345b2b}
+@media(max-width:420px){main{margin-top:26px}.fields{flex-direction:column;gap:0}section{padding:20px}}
+</style>
+</head>
+<body>
+<main>
+<header><div class="eyebrow">Alumno 8 · Unidad 2 · Actividad 4</div>
+<h1>Perímetro del rectángulo</h1>
+<p>Calcula la longitud total de los cuatro lados de un rectángulo.</p>
+<span class="version" id="version">Versión 1 · Publicación inicial</span></header>
+<section aria-labelledby="calculadora"><h2 id="calculadora">Calculadora</h2>
+<p class="formula">P = 2 × (largo + ancho)</p>
+<form id="formulario"><div class="fields">
+<label for="largo">Largo<input id="largo" name="largo" type="number" min="0" step="any" value="5" required></label>
+<label for="ancho">Ancho<input id="ancho" name="ancho" type="number" min="0" step="any" value="3" required></label>
+</div><button type="submit">Calcular perímetro</button></form>
+<output id="resultado" aria-live="polite">Perímetro: 16 unidades</output>
+<p class="note">Usa la misma unidad para ambas medidas. Se permite cero como caso límite.</p>
+</section>
+<footer>Proyecto de Hernández Martinez Ángel Daniel · IDSM41<br>
+<a href="https://github.com/Martinez2319/perimetro_rectangulo">Ver código en GitHub</a></footer>
+</main>
+<script>
+const formulario = document.getElementById("formulario");
+const resultado = document.getElementById("resultado");
+formulario.addEventListener("submit", (evento) => {
+  evento.preventDefault();
+  const largo = Number(document.getElementById("largo").value);
+  const ancho = Number(document.getElementById("ancho").value);
+  const perimetro = 2 * (largo + ancho);
+  if (![largo, ancho, perimetro].every(Number.isFinite) || largo < 0 || ancho < 0) {
+    resultado.textContent = "Introduce medidas no negativas cuyo perímetro sea finito.";
+    return;
+  }
+  resultado.textContent = "Perímetro: " + new Intl.NumberFormat("es-MX", {maximumFractionDigits: 10}).format(perimetro) + " unidades";
+});
+</script>
+</body>
+</html>
